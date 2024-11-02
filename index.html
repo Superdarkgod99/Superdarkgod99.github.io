@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apple Music Album Covers</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+        #cover {
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" id="albumUrl" placeholder="Enter Apple Music Album URL" />
+    <button onclick="loadAlbum()">Load Album</button>
+    <img id="cover" onclick="nextCover()" />
+
+    <script>
+        let covers = [];
+        let currentIndex = 0;
+
+        function loadAlbum() {
+            const url = document.getElementById('albumUrl').value;
+            const albumId = url.split('/').pop(); // Get album ID from URL
+            const apiUrl = `https://itunes.apple.com/lookup?id=${albumId}&entity=album`;
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    covers = data.results.map(album => album.artworkUrl100.replace('100x100', '1000x1000'));
+                    currentIndex = 0;
+                    showCover();
+                });
+        }
+
+        function showCover() {
+            const cover = document.getElementById('cover');
+            cover.src = covers[currentIndex];
+            cover.style.display = 'block';
+            cover.requestFullscreen(); // Open in fullscreen
+        }
+
+        function nextCover() {
+            currentIndex = (currentIndex + 1) % covers.length;
+            showCover();
+        }
+    </script>
+</body>
+</html>
