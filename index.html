@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apple Music Album Covers</title>
+    <title>Animated Apple Music Album Covers</title>
     <style>
         body {
             margin: 0;
@@ -28,12 +28,15 @@
 
         function loadAlbum() {
             const url = document.getElementById('albumUrl').value;
-            const albumId = url.split('/').pop(); // Get album ID from URL
+            const albumId = url.split('/').pop();
             const apiUrl = `https://itunes.apple.com/lookup?id=${albumId}&entity=album`;
             fetch(apiUrl)
                 .then(response => response.json())
                 .then(data => {
-                    covers = data.results.map(album => album.artworkUrl100.replace('100x100', '1000x1000'));
+                    covers = data.results.map(album => {
+                        const animatedCoverUrl = album.artworkUrl100.replace('100x100', '1000x1000'); // Use a higher resolution image
+                        return animatedCoverUrl.includes('.gif') ? animatedCoverUrl : `${animatedCoverUrl}?animated=true`; // Check for animation
+                    });
                     currentIndex = 0;
                     showCover();
                 });
@@ -43,7 +46,7 @@
             const cover = document.getElementById('cover');
             cover.src = covers[currentIndex];
             cover.style.display = 'block';
-            cover.requestFullscreen(); // Open in fullscreen
+            cover.requestFullscreen();
         }
 
         function nextCover() {
