@@ -3,22 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>Weather Dashboard with Clock & Apple Music</title>
     <style>
-        /* Remove any default margin and padding */
-        * {
+        body {
             margin: 0;
             padding: 0;
+            font-family: Arial, sans-serif;
+            color: white;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: linear-gradient(to bottom, #001f3f, #0074D9);
+            transition: background 0.5s ease-in-out;
         }
-        /* Full-page GIF background styling */
-        body, html {
-            height: 100%;
-            overflow: hidden;
-            background: url('https://media1.tenor.com/m/kyPR5czGds8AAAAd/agc-a-great-chaos.gif') no-repeat center center fixed;
-            background-size: cover;
+
+        #main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px; /* Space between main content and Apple Music */
         }
+
+        #weather, #clock {
+            margin: 10px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        #apple-music {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            width: 200px; /* Fixed width for Apple Music display */
+            text-align: center;
+        }
+
+        /* Add basic animation styles */
+        .animated-bg {
+            animation: animatedBackground 10s infinite alternate;
+        }
+
+        @keyframes animatedBackground {
+            from { background: linear-gradient(to bottom, #001f3f, #0074D9); }
+            to { background: linear-gradient(to bottom, #001f3f, #FF4136); }
+        }
+
+        .hidden { display: none; }
     </style>
 </head>
 <body>
+    <div id="main">
+        <div id="weather">Loading weather...</div>
+        <div id="clock">Loading clock...</div>
+        <button id="toggle-animation">Toggle Background Animation</button>
+    </div>
+    
+    <div id="apple-music">
+        <h2>Apple Music</h2>
+        <p>Explore your favorite music!</p>
+        <p><a href="https://music.apple.com" style="color: #1DB954;">Open Apple Music</a></p>
+    </div>
+
+    <script>
+        // Variables for settings
+        let animationEnabled = false;
+
+        // 1. Weather Information for NY
+        async function fetchWeather() {
+            const apiKey = '14e69e3695a175cf42d71502b4e02828'; // Your OpenWeather API key
+            const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=New+York&units=metric&appid=${apiKey}`);
+            const data = await response.json();
+            document.getElementById('weather').innerHTML = `
+                <h2>New York Weather</h2>
+                <p>Temperature: ${data.main.temp}°C</p>
+                <p>Condition: ${data.weather[0].description}</p>
+            `;
+        }
+
+        // 2. Clock Display
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('clock').textContent = now.toLocaleTimeString();
+        }
+        setInterval(updateClock, 1000);
+
+        // 4. Toggle Background Animation
+        document.getElementById('toggle-animation').addEventListener('click', () => {
+            animationEnabled = !animationEnabled;
+            document.body.classList.toggle('animated-bg', animationEnabled);
+        });
+
+        // Load all content
+        fetchWeather();
+        updateClock();
+    </script>
 </body>
 </html>
