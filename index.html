@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather Dashboard with Clock & Apple Music</title>
+    <title>Colorful Weather Dashboard with Clock & Apple Music</title>
     <style>
         body {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
-            color: white;
+            font-family: 'Arial', sans-serif;
+            color: #ffffff;
             display: flex;
             flex-direction: row;
             align-items: center;
             justify-content: center;
             height: 100vh;
-            background: linear-gradient(to bottom, #001f3f, #0074D9);
+            background: linear-gradient(135deg, #FF6B6B, #FFD93D);
             transition: background 0.5s ease-in-out;
         }
 
@@ -28,34 +28,58 @@
         }
 
         #weather, #clock {
-            margin: 10px;
+            margin: 20px;
             text-align: center;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 30px; /* Increased padding for larger sections */
             border-radius: 10px;
-            width: 90%;
-            max-width: 400px;
+            width: 100%; /* Full width of the parent container */
+            max-width: 500px; /* Max width for larger screens */
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
         }
 
         #apple-music {
-            background: rgba(0, 0, 0, 0.5);
-            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 30px; /* Increased padding */
             border-radius: 10px;
-            width: 200px; /* Fixed width for Apple Music display */
+            width: 250px; /* Slightly wider for Apple Music display */
             text-align: center;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
         }
 
-        /* Add basic animation styles */
+        /* Add colorful animation styles */
         .animated-bg {
             animation: animatedBackground 10s infinite alternate;
         }
 
         @keyframes animatedBackground {
-            from { background: linear-gradient(to bottom, #001f3f, #0074D9); }
-            to { background: linear-gradient(to bottom, #001f3f, #FF4136); }
+            from { background: linear-gradient(135deg, #FF6B6B, #FFD93D); }
+            to { background: linear-gradient(135deg, #4ECDC4, #556270); }
         }
 
-        .hidden { display: none; }
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            background-color: #1DB954; /* Bright green for button */
+            color: white;
+            font-size: 18px; /* Increased font size */
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #1ed760; /* Lighter green on hover */
+        }
+
+        a {
+            color: #1DB954;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -68,7 +92,7 @@
     <div id="apple-music">
         <h2>Apple Music</h2>
         <p>Explore your favorite music!</p>
-        <p><a href="https://music.apple.com" style="color: #1DB954;">Open Apple Music</a></p>
+        <p><a href="https://music.apple.com">Open Apple Music</a></p>
     </div>
 
     <script>
