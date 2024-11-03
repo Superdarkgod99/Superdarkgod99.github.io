@@ -5,45 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Full-Page Background GIF</title>
     <style>
-        /* Full-page background styling */
-        body, html {
+        /* Ensure no margin or padding on the page */
+        * {
             margin: 0;
             padding: 0;
+        }
+        /* Full-page GIF background styling */
+        body, html {
             height: 100%;
             overflow: hidden;
         }
-        .background-gif {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-        }
-        /* Centering content over the GIF */
-        .content {
-            position: relative;
-            z-index: 1;
-            color: white;
-            text-align: center;
-            padding-top: 50vh;
-            font-family: Arial, sans-serif;
-            font-size: 2em;
-        }
-    </style>
-</head>
-<body>
-    <!-- Embed the Tenor GIF as full-page background -->
-    <div class="background-gif">
-        <div class="tenor-gif-embed" data-postid="10602548732673554127" data-share-method="host" data-aspect-ratio="1" data-width="100%"></div>
-        <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
-    </div>
-    
-    <!-- Main content of the page -->
-    <div class="content">
-        <h1>Welcome to My GitHub Site</h1>
-        <p>Enjoy the background animation!</p>
-    </div>
-</body>
-</html>
+        body {
+            background: url('https://media1.tenor.com/m/kyPR5czGds8AAAAd/agc-a-great-chaos.gif') no-repeat center center
