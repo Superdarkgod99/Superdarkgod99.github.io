@@ -14,46 +14,24 @@
             margin: 0;
             background-color: #f4f4f4;
             color: #333;
+            flex-direction: column; /* Arrange slider and message vertically */
             transition: background-color 0.5s;
-        }
-        .slider-container {
-            text-align: center;
         }
         .slider {
             width: 300px;
         }
-        .level-labels {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 10px;
-        }
-        .level-label {
-            font-size: 14px;
-        }
         .message {
             margin-top: 20px;
-            font-size: 18px;
+            font-size: 60px; /* Set font size to 60px */
             font-weight: bold;
+            text-align: center;
         }
     </style>
 </head>
 <body>
 
-    <div class="slider-container">
-        <h1>Slider with 8 Levels</h1>
-        <input type="range" min="1" max="8" value="1" class="slider" id="slider">
-        <div class="level-labels">
-            <span class="level-label">1</span>
-            <span class="level-label">2</span>
-            <span class="level-label">3</span>
-            <span class="level-label">4</span>
-            <span class="level-label">5</span>
-            <span class="level-label">6</span>
-            <span class="level-label">7</span>
-            <span class="level-label">8</span>
-        </div>
-        <div class="message" id="message">Hey, can you please not look at my screen? I'm tryna work.</div>
-    </div>
+    <input type="range" min="1" max="8" value="1" class="slider" id="slider">
+    <div class="message" id="message">Hey, can you please not look at my screen? I'm tryna work.</div>
 
     <script>
         const slider = document.getElementById('slider');
